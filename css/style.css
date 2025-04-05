@@ -1,10 +1,14 @@
 /* css/style.css */
 body {
-    font-family: sans-serif;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     text-align: center;
-    padding: 2em;
+    padding: 2px;
+    background-color: black;
   }
   h1 {
     color: #2e86de;
+  }
+  p {
+    color: red;
   }
   
