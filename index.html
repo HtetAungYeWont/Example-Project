@@ -2,28 +2,30 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>MyShop</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MySHOP</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
     <style>
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: white;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
         .navbar {
             background: linear-gradient(to left, #FFA500, #2121db);
         }
 
-        .navbar-brand {
-            font-weight: bold;
+        .custom-navbar a:hover {
+            color: #FFA500;
         }
 
         .product-card img {
-            height: 250px;
+            height: 200px;
             object-fit: cover;
             transition: transform 0.3s ease;
         }
@@ -32,102 +34,266 @@
             transform: scale(1.1);
         }
 
-        .category-btn {
-            margin-right: 10px;
-            margin-bottom: 10px;
+        .footer {
+            background: black;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            margin-top: auto;
         }
 
-        .footer {
-            height: 60px;
-            color: black;
+        .custom-navbar {
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .custom-navbar a {
+            text-decoration: none;
+            margin-right: 20px;
+            color: #000;
+        }
+
+        .offcanvas-start {
+            width: 250px;
+        }
+
+        /* Align text and button in card */
+        .product-card .card-body {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+            text-align: center;
+        }
+
+        .product-card .card-title {
+            margin-bottom: 15px;
+        }
+
+        .product-card .btn {
+            align-self: center;
+            margin-top: auto;
         }
     </style>
 </head>
 
 <body>
 
-    <nav class="navbar navbar-dark px-4">
-        <a class="navbar-brand d-flex align-items-center" href="#">
-            <i class="bi bi-bag me-2"></i>MyShop
-        </a>
-        <form class="d-flex mx-auto" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search products..." aria-label="Search">
-            <button class="btn btn-outline-light" type="submit"><i class="bi bi-search"></i></button>
+    <!-- Main Header with search, user, cart -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light px-4 py-3">
+        <a class="navbar-brand" href="#" style="color: white;"><i class="fa-solid fa-bag-shopping"></i> MySHOP</a>
+        <button class="btn btn-outline-secondary me-2 d-lg-none" type="button" data-bs-toggle="offcanvas"
+            data-bs-target="#sidebarOffcanvas">
+            <i class="fas fa-bars"></i>
+        </button>
+        <form class="d-none d-md-flex mx-auto w-50">
+            <input class="form-control me-2" type="search" placeholder="Find products..." />
         </form>
-        <div>
-            <a href="#" class="text-white me-3"><i class="fa-solid fa-user"></i></a>
-            <a href="#" class="text-white"><i class="fa-solid fa-cart-shopping"></i></a>
+        <div class="d-flex align-items-center ms-auto">
+            <a href="#" class="text-decoration-none me-3" style="color: white;"><i class=" fas fa-user"></i></a>
+            <a href="#" class="text-decoration-none" me-3 style="color: white;">
+                <i class="fas fa-shopping-cart"></i><span class="badge bg-primary">0</span>
+            </a>
         </div>
     </nav>
 
-    <div class="container mt-4">
-        <h4>Categories</h4>
-        <div class="mb-4">
-            <button class="btn btn-outline-primary category-btn">All</button>
-            <button class="btn btn-outline-primary category-btn">Electronics</button>
-            <button class="btn btn-outline-primary category-btn">Fashion</button>
-            <button class="btn btn-outline-primary category-btn">Home</button>
-            <button class="btn btn-outline-primary category-btn">Books</button>
+    <div class="custom-navbar px-4 py-2 d-none d-lg-block">
+        <a href="#">Home</a>
+        <a href="#">New Arrivals</a>
+        <a href="#">Best Sellers</a>
+        <a href="#">Genres</a>
+        <a href="#">Contact</a>
+    </div>
+
+    <!-- Sidebar Offcanvas (for all screen sizes) -->
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="sidebarOffcanvas">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title">Menu</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
         </div>
-
-        <h4>Our Products</h4>
-        <div class="row row-cols-1 row-cols-md-4 g-4">
-
-            <div class="col">
-                <div class="card product-card h-100">
-                    <img src="images/beats.jpg" class="card-img-top" alt="Wireless Headphones">
-                    <div class="card-body">
-                        <h5 class="card-title">Beat Solo 4</h5>
-                        <p class="card-text">$109.99</p>
-                        <button class="btn btn-primary w-100"><i class="bi bi-cart"></i> Add to Cart</button>
+        <div class="offcanvas-body">
+            <div class="accordion" id="sidebarAccordion">
+                <!-- Categories -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingCategories">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseCategories" aria-expanded="false"
+                            aria-controls="collapseCategories">
+                            Categories
+                        </button>
+                    </h2>
+                    <div id="collapseCategories" class="accordion-collapse collapse" aria-labelledby="headingCategories"
+                        data-bs-parent="#sidebarAccordion">
+                        <div class="accordion-body">
+                            <ul class="list-unstyled">
+                                <li><a href="#" class="text-decoration-none">Fashion</a></li>
+                                <li><a href="#" class="text-decoration-none">Electronics</a></li>
+                                <li><a href="#" class="text-decoration-none">Accessories</a></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="col">
-                <div class="card product-card h-100">
-                    <img src="images/a3.webp" class="card-img-top" alt="Stylish Sneakers">
-                    <div class="card-body">
-                        <h5 class="card-title">Air Jordan 1 Low</h5>
-                        <p class="card-text">$152.99</p>
-                        <button class="btn btn-primary w-100"><i class="bi bi-cart"></i> Add to Cart</button>
+                <!-- Brands -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingBrands">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseBrands" aria-expanded="false" aria-controls="collapseBrands">
+                            Brands
+                        </button>
+                    </h2>
+                    <div id="collapseBrands" class="accordion-collapse collapse" aria-labelledby="headingBrands"
+                        data-bs-parent="#sidebarAccordion">
+                        <div class="accordion-body">
+                            <ul class="list-unstyled">
+                                <li><a href="#" class="text-decoration-none">Beat</a></li>
+                                <li><a href="#" class="text-decoration-none">Jordan</a></li>
+                                <li><a href="#" class="text-decoration-none">BOSCH</a></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="col">
-                <div class="card product-card h-100">
-                    <img src="images/coffee_machine" class="card-img-top" alt="Coffee Maker">
-                    <div class="card-body">
-                        <h5 class="card-title">BOSCH 800 Series</h5>
-                        <p class="card-text">$204.99</p>
-                        <button class="btn btn-primary w-100"><i class="bi bi-cart"></i> Add to Cart</button>
-                    </div>
-                </div>
             </div>
-
-            <div class="col">
-                <div class="card product-card h-100">
-                    <img src="images/a7.avif" class="card-img-top" alt="Smart Watch">
-                    <div class="card-body">
-                        <h5 class="card-title">Apple Watch Series 7</h5>
-                        <p class="card-text">$399.99</p>
-                        <button class="btn btn-primary w-100"><i class="bi bi-cart"></i> Add to Cart</button>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </div>
 
-    <hr>
-    <footer class="footer text-center py-3 mt-4">
-        <p>&copy; 2025 MyShop. All rights reserved.</p>
+    <div class="container-fluid">
+        <div class="row">
+
+            <!-- Sidebar for large screens -->
+            <div class="col-lg-2 d-none d-lg-block bg-light p-3">
+                <h5>Menu</h5>
+                <div class="accordion" id="sidebarAccordionLg">
+                    <!-- Categories -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingCategoriesLg">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseCategoriesLg" aria-expanded="false"
+                                aria-controls="collapseCategoriesLg">
+                                Categories
+                            </button>
+                        </h2>
+                        <div id="collapseCategoriesLg" class="accordion-collapse collapse"
+                            aria-labelledby="headingCategoriesLg" data-bs-parent="#sidebarAccordionLg">
+                            <div class="accordion-body">
+                                <ul class="list-unstyled">
+                                    <li><a href="#" class="text-decoration-none">Fashion</a></li>
+                                    <li><a href="#" class="text-decoration-none">Electronics</a></li>
+                                    <li><a href="#" class="text-decoration-none">Accessories</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Brands -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingBrandsLg">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseBrandsLg" aria-expanded="false"
+                                aria-controls="collapseBrandsLg">
+                                Brands
+                            </button>
+                        </h2>
+                        <div id="collapseBrandsLg" class="accordion-collapse collapse" aria-labelledby="headingBrandsLg"
+                            data-bs-parent="#sidebarAccordionLg">
+                            <div class="accordion-body">
+                                <ul class="list-unstyled">
+                                    <li><a href="#" class="text-decoration-none">Beat</a></li>
+                                    <li><a href="#" class="text-decoration-none">Jordan</a></li>
+                                    <li><a href="#" class="text-decoration-none">BOSCH</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <main class="col-lg-10 col-md-12 col-12 p-4">
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 g-4">
+                    <!-- Product Card 1 -->
+                    <div class="col">
+                        <div class="card product-card h-100">
+                            <img src="images/a3.webp" class="card-img-top" alt="Product 1" />
+                            <div class="card-body">
+                                <h6 class="card-title">Air Jordan 1 Low</h6>
+                                <p class="text-success">$150.99</p>
+                                <a href="#" class="btn btn-success btn-sm">Add to Cart</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product Card 2 -->
+                    <div class="col">
+                        <div class="card product-card h-100">
+                            <img src="images/beats.jpg" class="card-img-top" alt="Product 2" />
+                            <div class="card-body">
+                                <h6 class="card-title">Beat Solo 4</h6>
+                                <p class="text-success">$100.99</p>
+                                <a href="#" class="btn btn-success btn-sm">Add to Cart</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product Card 3 -->
+                    <div class="col">
+                        <div class="card product-card h-100">
+                            <img src="images/coffee_machine" class="card-img-top" alt="Product 3" />
+                            <div class="card-body">
+                                <h6 class="card-title">BOSCH 800 Series</h6>
+                                <p class="text-success">$209.99</p>
+                                <a href="#" class="btn btn-success btn-sm">Add to Cart</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product Card 4 -->
+                    <div class="col">
+                        <div class="card product-card h-100">
+                            <img src="images/jacket.jpg" class="card-img-top" alt="Product 3" />
+                            <div class="card-body">
+                                <h6 class="card-title">H&M Biker Jacket</h6>
+                                <p class="text-success">$279.99</p>
+                                <a href="#" class="btn btn-success btn-sm">Add to Cart</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product Card 5 -->
+                    <div class="col">
+                        <div class="card product-card h-100">
+                            <img src="images/a7.avif" class="card-img-top" alt="Product 3" />
+                            <div class="card-body">
+                                <h6 class="card-title">Apple Watch Series 7</h6>
+                                <p class="text-success">$509.99</p>
+                                <a href="#" class="btn btn-success btn-sm">Add to Cart</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product Card 6 -->
+                    <div class="col">
+                        <div class="card product-card h-100">
+                            <img src="images/dyson.jpg" class="card-img-top" alt="Product 3" />
+                            <div class="card-body">
+                                <h6 class="card-title">Dyson Supersonic Nural</h6>
+                                <p class="text-success">$400.99</p>
+                                <a href="#" class="btn btn-success btn-sm">Add to Cart</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <footer class="footer text-white text-center py-3">
+        © 2025 All rights reserved.
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 </body>
 
 </html>
